@@ -1,7 +1,6 @@
-Pyrogram
+pyrogram
 tgcrypto
 aiohttp
 motor
 dnspython
 flask
-gunicorn
