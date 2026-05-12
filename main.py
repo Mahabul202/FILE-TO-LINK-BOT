@@ -1,7 +1,8 @@
 import sys
 from unittest.mock import MagicMock
 
-# Mock sqlite3 to bypass the missing module error on Cloudflare
+# THIS MUST COME BEFORE 'from bot import Bot'
+# It tricks the system into thinking sqlite3 is there
 mock_sqlite3 = MagicMock()
 sys.modules["sqlite3"] = mock_sqlite3
 
