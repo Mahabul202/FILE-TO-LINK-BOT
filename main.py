@@ -1,10 +1,10 @@
 import sys
 from unittest.mock import MagicMock
 
-# THIS MUST COME BEFORE 'from bot import Bot'
-# It tricks the system into thinking sqlite3 is there
-mock_sqlite3 = MagicMock()
-sys.modules["sqlite3"] = mock_sqlite3
+# Mock sqlite3 BEFORE any pyrogram imports
+# Pyrogram imports it at module level even when using in_memory=True
+sys.modules["sqlite3"] = MagicMock()
+sys.modules["_sqlite3"] = MagicMock()  # also mock the C extension directly
 
 import asyncio
 from bot import Bot
@@ -16,4 +16,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-    
